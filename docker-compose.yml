@@ -15,7 +15,7 @@ services:
     environment:
       APP_ENV: ${APP_ENV}
       APP_PORT: ${APP_PORT}
-      DB_HOST: ${DB_HOST}
+      DB_HOST: mysqldb
       DB_PORT: ${DB_PORT}
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
@@ -28,7 +28,7 @@ services:
     depends_on:
       - mysqldb
     networks:
-      - lending_backend_net
+      - run_net
 
   # cronjob:
   #   build:
@@ -55,7 +55,7 @@ services:
   #   depends_on:
   #     - mysqldb
   #   networks:
-  #     - lending_backend_net
+  #     - run_net
 
   mysqldb:
     image: mysql:8
@@ -67,9 +67,9 @@ services:
       - mysqldata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: lending_backend
+      MYSQL_DATABASE: example_db
     networks:
-      - lending_backend_net
+      - run_net
 
   adminer:
     image: adminer
@@ -78,7 +78,7 @@ services:
     depends_on:
       - mysqldb
     networks:
-      - lending_backend_net
+      - run_net
 
   # redis:
   #   image: redis:6-alpine
@@ -87,7 +87,7 @@ services:
   #   volumes:
   #     - redisdata:/data
   #   networks:
-  #     - lending_backend_net
+  #     - run_net
 
 volumes:
   node_modules:
@@ -96,5 +96,5 @@ volumes:
 
 
 networks:
-  lending_backend_net:
+  run_net:
     driver: bridge
