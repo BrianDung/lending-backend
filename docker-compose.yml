@@ -67,7 +67,7 @@ services:
       - mysqldata:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: example_db
+      MYSQL_DATABASE: lending_backend
     networks:
       - lending_backend_net
 
